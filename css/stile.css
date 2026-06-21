@@ -1,0 +1,379 @@
+/* =============================================
+   LABORATORIO COSMETICO BOTANICO
+   Foglio di stile principale
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+:root {
+  --verde-profondo:  #2d4a2f;
+  --verde-salvia:    #6b8f71;
+  --verde-chiaro:    #a8c5a0;
+  --crema:           #f5f0e8;
+  --avorio:          #fdfaf4;
+  --terra:           #8b6f47;
+  --oro-botanico:    #c9a96e;
+  --testo:           #2a2a2a;
+  --testo-leggero:   #5a5a5a;
+  --bordo:           #d4cfc6;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-corpo:   'Jost', sans-serif;
+
+  --raggio: 4px;
+  --ombra: 0 2px 16px rgba(45,74,47,0.08);
+  --transizione: 0.3s ease;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-corpo);
+  font-weight: 300;
+  color: var(--testo);
+  background: var(--avorio);
+  line-height: 1.7;
+}
+
+img { max-width: 100%; display: block; }
+a  { color: var(--verde-profondo); text-decoration: none; transition: color var(--transizione); }
+a:hover { color: var(--oro-botanico); }
+
+/* ── Tipografia ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--verde-profondo);
+}
+h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 1rem; }
+h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1.1rem; font-weight: 600; }
+p  { margin-bottom: 1rem; color: var(--testo-leggero); }
+em { font-style: italic; color: var(--terra); }
+
+/* ── Header ── */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--verde-profondo);
+  border-bottom: 2px solid var(--oro-botanico);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--crema);
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.03em;
+}
+.logo-icona { font-size: 1.8rem; }
+
+/* ── Navigazione ── */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+nav ul li { position: relative; }
+nav ul li > a {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  color: var(--verde-chiaro);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--raggio);
+  transition: all var(--transizione);
+}
+nav ul li > a:hover,
+nav ul li > a.attivo {
+  color: var(--oro-botanico);
+  background: rgba(255,255,255,0.07);
+}
+
+/* Dropdown */
+.dropdown { display: none; position: absolute; top: 100%; left: 0;
+  background: var(--verde-profondo); min-width: 200px;
+  border: 1px solid var(--verde-salvia); border-radius: var(--raggio);
+  box-shadow: var(--ombra); z-index: 200; }
+.dropdown li a { padding: 0.6rem 1rem; font-size: 0.82rem;
+  color: var(--crema); text-transform: none; letter-spacing: 0; }
+.dropdown li a:hover { color: var(--oro-botanico); background: rgba(255,255,255,0.05); }
+nav ul li:hover .dropdown { display: block; }
+.dropdown.sub { position: absolute; left: 100%; top: 0; }
+
+/* ── Hero ── */
+.hero {
+  background: linear-gradient(135deg, var(--verde-profondo) 0%, #3d6640 60%, var(--verde-salvia) 100%);
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-contenuto { position: relative; max-width: 800px; margin: 0 auto; }
+.hero h1 { color: var(--crema); font-style: italic; margin-bottom: 1rem; }
+.hero p  { color: var(--verde-chiaro); font-size: 1.1rem; max-width: 600px; margin: 0 auto 2rem; }
+.tag-botanico {
+  display: inline-block;
+  font-family: var(--font-corpo);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--oro-botanico);
+  border: 1px solid var(--oro-botanico);
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Layout principale ── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.sezione {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.sezione-alternata { background: var(--crema); }
+.sezione-scura { background: var(--verde-profondo); color: var(--crema); }
+.sezione-scura h2, .sezione-scura h3 { color: var(--crema); }
+.sezione-scura p { color: var(--verde-chiaro); }
+
+/* ── Griglia card ── */
+.griglia {
+  display: grid;
+  gap: 1.5rem;
+}
+.griglia-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.griglia-3 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.griglia-4 { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+.card {
+  background: var(--avorio);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  padding: 1.8rem;
+  box-shadow: var(--ombra);
+  transition: transform var(--transizione), box-shadow var(--transizione);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px rgba(45,74,47,0.14);
+}
+.card-icona { font-size: 2.2rem; margin-bottom: 0.75rem; }
+.card a.btn-scheda {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.4rem 1rem;
+  background: var(--verde-profondo);
+  color: var(--crema);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: var(--raggio);
+  transition: background var(--transizione);
+}
+.card a.btn-scheda:hover { background: var(--oro-botanico); }
+
+/* ── Linea decorativa titoli ── */
+.titolo-sezione {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.titolo-sezione h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--oro-botanico);
+  margin: 0.75rem auto 0;
+}
+.titolo-sezione p { max-width: 600px; margin: 1rem auto 0; }
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  background: var(--crema);
+  border-bottom: 1px solid var(--bordo);
+  padding: 0.6rem 2rem;
+  font-size: 0.82rem;
+  color: var(--testo-leggero);
+}
+.breadcrumb a { color: var(--verde-salvia); }
+.breadcrumb span { margin: 0 0.4rem; }
+
+/* ── Scheda prodotto ── */
+.scheda-prodotto {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  padding: 3rem 0;
+}
+@media (max-width: 768px) { .scheda-prodotto { grid-template-columns: 1fr; } }
+.scheda-immagine {
+  background: var(--crema);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  aspect-ratio: 4/3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  color: var(--verde-salvia);
+}
+.scheda-info table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+.scheda-info table th,
+.scheda-info table td {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--bordo);
+}
+.scheda-info table th {
+  font-weight: 500;
+  color: var(--verde-profondo);
+  width: 35%;
+  background: var(--crema);
+}
+
+/* ── Video sezione ── */
+.video-griglia {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.video-card {
+  background: var(--crema);
+  border: 1px solid var(--bordo);
+  border-radius: var(--raggio);
+  overflow: hidden;
+}
+.video-placeholder {
+  aspect-ratio: 16/9;
+  background: var(--verde-profondo);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: var(--crema); font-size: 3rem;
+  cursor: pointer; position: relative;
+}
+.video-placeholder span { font-family: var(--font-corpo); font-size: 0.85rem;
+  margin-top: 0.5rem; color: var(--verde-chiaro); }
+.video-info { padding: 1rem 1.2rem; }
+.video-info h4 { color: var(--verde-profondo); margin-bottom: 0.3rem; }
+.video-info p { font-size: 0.85rem; margin-bottom: 0; }
+
+/* ── Essenze/Droghe ── */
+.essenza-card {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  border-left: 3px solid var(--oro-botanico);
+  margin-bottom: 1.5rem;
+  background: var(--crema);
+}
+.essenza-icona { font-size: 2.5rem; flex-shrink: 0; }
+.essenza-testo h3 { margin-bottom: 0.4rem; }
+.proprieta {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem;
+}
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  background: var(--verde-chiaro);
+  color: var(--verde-profondo);
+  font-weight: 500;
+}
+
+/* ── Laboratorio ── */
+.processo-step {
+  display: flex; gap: 1.5rem; margin-bottom: 2rem; align-items: flex-start;
+}
+.step-numero {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--verde-chiaro);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 60px;
+}
+.step-contenuto h3 { margin-bottom: 0.4rem; }
+
+/* ── Footer ── */
+#footer {
+  background: #1a2e1b;
+  color: var(--verde-chiaro);
+  padding: 3rem 2rem 1.5rem;
+  margin-top: 4rem;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+@media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+.footer-logo { font-family: var(--font-display); font-size: 1.4rem;
+  color: var(--crema); margin-bottom: 0.75rem; }
+.footer-desc { font-size: 0.875rem; line-height: 1.6; }
+.footer-col h4 { color: var(--oro-botanico); font-family: var(--font-corpo);
+  font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 1rem; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 0.5rem; }
+.footer-col ul li a { color: var(--verde-chiaro); font-size: 0.875rem; }
+.footer-col ul li a:hover { color: var(--crema); }
+.footer-bottom {
+  max-width: 1200px; margin: 1.2rem auto 0;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.78rem; color: rgba(255,255,255,0.4);
+}
+
+/* ── Utility ── */
+.testo-centro { text-align: center; }
+.mt-2 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 2rem; }
+.divider { border: none; border-top: 1px solid var(--bordo); margin: 2.5rem 0; }
+
+/* ── Responsive menu ── */
+.menu-toggle { display: none; background: none; border: none;
+  color: var(--crema); font-size: 1.5rem; cursor: pointer; }
+@media (max-width: 900px) {
+  .menu-toggle { display: block; }
+  nav { display: none; position: absolute; top: 70px; left: 0; right: 0;
+    background: var(--verde-profondo); padding: 1rem; }
+  nav.aperto { display: block; }
+  nav ul { flex-direction: column; }
+  .dropdown { display: none !important; position: static; box-shadow: none; }
+}
